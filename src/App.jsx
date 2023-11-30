@@ -27,6 +27,19 @@ function App() {
     },
 
   ])
+
+  const addTodo = ( text, category ) => {
+    const newTodos = [...todos, {
+      id: Math.floor(Math.random() * 1000) ,
+      text,
+      category,
+      isCompleted: false,
+    },
+   ];
+
+    setTodos(newTodos);
+
+  };
   
 
   return (
@@ -34,10 +47,10 @@ function App() {
     <h1>Lista de Tarefas</h1>
     <div className="todo-list">
       {todos.map((todo) => (
-        <Todo todo={todo} key={0} ></Todo>
+        <Todo todo={todo} key={todo.id} ></Todo>
       ))}
     </div>
-    <TodoForm></TodoForm>
+    <TodoForm addTodo={addTodo}></TodoForm>
   </div>
   )
 }
